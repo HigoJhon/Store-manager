@@ -15,7 +15,9 @@ const getById = async (req, res) => {
 };
 
 const postName = async (req, res) => {
-  const { type, message } = await productsService.postItem(req);
+  const { error, errorLength, type, message } = await productsService.postItem(req);
+  if (error) return res.status(type).json({ message });
+  if (errorLength) return res.status(type).json({ message });
   res.status(type).json(message);
 };
 

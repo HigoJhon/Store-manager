@@ -14,6 +14,12 @@ const getProductId = async (req) => {
 
 const postItem = async (req) => {
   const { name } = req.body;
+  if (!name) return { error: true, type: 400, message: '"name" is required' }; 
+  if (name.length < 5) {
+    return {
+      errorLength: true, type: 422, message: '"name" length must be at least 5 characters long',
+    };
+  }
   const [products] = await productsModel.postItem({ name });
   return { type: 201, message: { id: products.insertId, name } };
 };
