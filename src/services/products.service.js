@@ -12,7 +12,14 @@ const getProductId = async (req) => {
   return { type: 200, message: products };
 };
 
+const postItem = async (req) => {
+  const { name } = req.body;
+  const [products] = await productsModel.postItem({ name });
+  return { type: 201, message: { id: products.insertId, name } };
+};
+
 module.exports = {
   getAllProducts,
   getProductId,
+  postItem,
 };

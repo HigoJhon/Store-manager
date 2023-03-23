@@ -14,7 +14,13 @@ const getById = async (req, res) => {
   res.status(type).json(message);
 };
 
+const postName = async (req, res) => {
+  const { type, message } = await productsService.postItem(req);
+  res.status(type).json(message);
+};
+
 module.exports = {
   getByAll,
   getById,
+  postName,
 };
