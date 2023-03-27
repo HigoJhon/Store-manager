@@ -5,6 +5,8 @@ const { validProductId, validQuantity,
 
 const router = express.Router();
 
+router.get('/', salesController.getByAll);
+router.get('/:id', salesController.getById);
 router.post('/', validProductId, validQuantity, validQuantityValue,
   validProductExist, salesController.postSalesItem);
 
