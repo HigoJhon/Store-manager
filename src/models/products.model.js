@@ -22,8 +22,20 @@ const postItem = async (name) => {
   return insertItem;
 };
 
+const putProductUpdate = async (name, id) => {
+  console.log(id, name, 'cheguei na model');
+ await connection.execute(
+    'UPDATE StoreManager.products SET name = ? WHERE id = ?', [name, id],
+  );
+  return {
+    id,
+    name,
+  };
+};
+
 module.exports = {
   getAllProducts,
   getProductId,
   postItem,
+  putProductUpdate,
 };

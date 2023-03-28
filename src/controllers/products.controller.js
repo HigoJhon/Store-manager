@@ -21,8 +21,16 @@ const postName = async (req, res) => {
   res.status(type).json(message);
 };
 
+const putId = async (req, res) => {
+  const { id } = req.params;
+  const { name } = req.body;
+  const { type, message } = await productsService.putProductUpdate({ name, id });
+  res.status(type).json(message);
+};
+
 module.exports = {
   getByAll,
   getById,
   postName,
+  putId,
 };

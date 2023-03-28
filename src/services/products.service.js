@@ -24,8 +24,17 @@ const postItem = async (req) => {
   return { type: 201, message: { id: products.insertId, name } };
 };
 
+const putProductUpdate = async ({ name, id }) => {
+  const pushId = await productsModel.getProductId(id);
+  if (pushId === undefined) return { type: 404, message: { message: 'Product not found' } }; 
+  
+  const resul = await productsModel.putProductUpdate(name, id);
+  return { type: 200, message: resul };
+};
+
 module.exports = {
   getAllProducts,
   getProductId,
   postItem,
+  putProductUpdate,
 };
