@@ -28,9 +28,16 @@ const putId = async (req, res) => {
   res.status(type).json(message);
 };
 
+const deleteId = async (req, res) => {
+  const { id } = req.params;
+  const { type, message } = await productsService.deletProduct({ id });
+  res.status(type).json(message);
+};
+
 module.exports = {
   getByAll,
   getById,
   postName,
   putId,
+  deleteId,
 };

@@ -32,9 +32,17 @@ const putProductUpdate = async ({ name, id }) => {
   return { type: 200, message: resul };
 };
 
+const deletProduct = async ({ id }) => {
+  const pushId = await productsModel.getProductId(id);
+  if (pushId === undefined) return { type: 404, message: { message: 'Product not found' } };
+  await productsModel.deletProduct(id);
+  return { type: 204 };
+};
+
 module.exports = {
   getAllProducts,
   getProductId,
   postItem,
   putProductUpdate,
+  deletProduct,
 };
