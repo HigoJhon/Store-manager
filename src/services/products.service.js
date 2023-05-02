@@ -24,7 +24,9 @@ const postItem = async (req) => {
   return { type: 201, message: { id: products.insertId, name } };
 };
 
-const putProductUpdate = async ({ name, id }) => {
+const putProductUpdate = async (req) => {
+  const { id } = req.params;
+  const { name } = req.body;
   const pushId = await productsModel.getProductId(id);
   if (pushId === undefined) return { type: 404, message: { message: 'Product not found' } }; 
   
@@ -32,7 +34,8 @@ const putProductUpdate = async ({ name, id }) => {
   return { type: 200, message: resul };
 };
 
-const deletProduct = async ({ id }) => {
+const deletProduct = async (req) => {
+  const { id } = req.params;
   const pushId = await productsModel.getProductId(id);
   if (pushId === undefined) return { type: 404, message: { message: 'Product not found' } };
   await productsModel.deletProduct(id);

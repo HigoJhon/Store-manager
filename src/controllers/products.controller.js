@@ -22,15 +22,12 @@ const postName = async (req, res) => {
 };
 
 const putId = async (req, res) => {
-  const { id } = req.params;
-  const { name } = req.body;
-  const { type, message } = await productsService.putProductUpdate({ name, id });
+  const { type, message } = await productsService.putProductUpdate(req);
   res.status(type).json(message);
 };
 
 const deleteId = async (req, res) => {
-  const { id } = req.params;
-  const { type, message } = await productsService.deletProduct({ id });
+  const { type, message } = await productsService.deletProduct(req);
   res.status(type).json(message);
 };
 

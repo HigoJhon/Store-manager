@@ -18,7 +18,19 @@ const mockId = {
   "name": "Escudo do Capitão América"
 }
 
+const mockPost = {
+  id: 4,
+  name: 'Product X'
+}
+
+const mockPut = {
+  "id": 1,
+  "name": 'martelin'
+}
+
 module.exports = {
   mockGetAll,
   mockId,
+  mockPost,
+  mockPut,
 }
